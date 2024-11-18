@@ -35,7 +35,7 @@ def search_tool(query: str):
 
 @tool
 def web_search_tool(query: str):
-    """Use this tool to search for information on the company's website website. Make sure to pay attention to dates."""
+    """Use this tool to search for information on the company's website. Make sure to pay attention to dates."""
     print("Web search tool invoked")
     web_search = TavilySearchResults(
         name="web_search",
@@ -46,3 +46,20 @@ def web_search_tool(query: str):
     )
     return web_search.invoke({'query': query})
 
+
+
+@tool
+def documentation_tool(query: str):
+    """  Use this tool to search for information related to programming questions. """
+    web_search = TavilySearchResults(
+        name="web_search",
+        description="Use this tool to search for information related to programming questions.",
+        include_domains = [
+            "https://langchain-ai.github.io/langgraph/", 
+            "https://python.langchain.com/docs/",
+            "https://developers.facebook.com/docs/whatsapp/cloud-api"
+        ],
+        include_images=True,
+        max_results=10,
+    )
+    return web_search.invoke({'query': query})
